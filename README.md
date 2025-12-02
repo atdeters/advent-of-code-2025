@@ -1,6 +1,7 @@
-![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-2025-red)
-![Stars](https://img.shields.io/badge/%E2%AD%90%20Stars-2%2F24-yellow)
-![C++98](https://img.shields.io/badge/C%2B%2B-98-00599C?logo=c%2B%2B&logoColor=white)
+[![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-2025-red)](https://adventofcode.com/)
+[![Stars](https://img.shields.io/badge/%E2%AD%90%20Stars-4%2F24-yellow)](https://en.wikipedia.org/wiki/Rubber_duck_debugging#/media/File:Rubber_duck_assisting_with_debugging.jpg)
+[![C++98](https://img.shields.io/badge/C%2B%2B-98-00599C?logo=c%2B%2B&logoColor=white)](https://cplusplus.com/doc/oldtutorial/)
+[![Rust 2024](https://img.shields.io/badge/Rust-2024-000000?logo=rust&logoColor=white)](https://doc.rust-lang.org/edition-guide/rust-2024/index.html)
 
 # 🎄 Advent of Code 2025 – My Solutions
 
