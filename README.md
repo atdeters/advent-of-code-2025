@@ -40,16 +40,12 @@ dayXX/
 
 ---
 
-## 🚫 A Friendly Disclaimer
+## 🎁 Have Fun!
 
 While you’re free to look around, **copying my solutions to get your own answers is strongly discouraged**.
 
 Advent of Code is all about learning and problem-solving — outsourcing that experience kind of defeats the point 😉  
 Write your own code, struggle a little, debug a lot, and enjoy the process.
-
----
-
-## 🎁 Have Fun!
 
 That’s it.  
 Enjoy Advent of Code, have fun experimenting with new ideas and languages, and most importantly:
