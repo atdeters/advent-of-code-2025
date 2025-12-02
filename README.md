@@ -12,11 +12,11 @@ I’m solving the puzzles using **different programming languages and build syst
 Every day follows the same hierarchy:
 
 dayXX/
-├── src/ # All source code for the solution
-├── input/ # Your personal puzzle input
-│ └── input.txt
-├── run-pt1.sh # Script to run Part 1
-└── run-pt2.sh # Script to run Part 2
+├── src/        # All source code for the solution  
+├── input/      # Your personal puzzle input  
+│   └── input.txt  
+├── run-pt1.sh  # Script to run Part 1  
+└── run-pt2.sh  # Script to run Part 2  
 
 ### 🧩 Folder Details
 
