@@ -132,8 +132,6 @@ int main( int ac, char **av ) {
 		return (1);
 	}
 
-
-
 	arr[0] = input;
 	size_t curr_line = 0;
 	for (size_t i = 0; i < len; i++) {
@@ -161,7 +159,6 @@ int main( int ac, char **av ) {
 			return 1;
 		}
 	}
-
 
 	long timelines = count_timelines(arr, 1, arr[0], visits);
 	printf("The tachyon particle ended up on  %s%li%s timelines\n", "\e[1m", timelines, "\e[0m");
