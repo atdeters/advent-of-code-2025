@@ -2,15 +2,24 @@
 
 name=$1
 
+# Verify input
 if [[ $# -eq 2 ]]; then
 	lang=$2
 elif [[ $# -gt 2 ]]; then
-	echo Illegal amount of input to the script
+	echo Illegal amount of arguments 1>&2
 	exit 1
 fi
 
-echo $#
+# Verify (optional) language
+if [[ $lang == "c" || $lang == "C" ]]; then
+	echo Chosen Template: C
+else
+	echo Unknown Template: $lang 1>&2
+	exit 1;
+fi
 
+
+# Create basic folder structure
 mkdir $name
 cd $name
 mkdir input
@@ -19,3 +28,12 @@ touch input.txt example.txt
 touch run-pt1.sh run-pt2.sh
 chmod +x run*
 mv *.txt ./input
+cd src
+
+# Copy language specific templates
+if [[ $lang == "c" || $lang == "C" ]]; then
+	cp ../../templates/main.c ./
+	mv main.c $name.c
+	echo "$name.c created successfully! Enjoy the puzzle :)"
+	exit 0
+fi
