@@ -11,11 +11,11 @@ elif [[ $# -gt 2 ]]; then
 fi
 
 # Verify (optional) language
-if [[ $lang == "c" || $lang == "C" ]]; then
+if [[ ($lang == "c" || $lang == "C") && $# -eq 2 ]]; then
 	echo Chosen Template: C
-else
+elif [[ $# -eq 2 ]]; then
 	echo "Unknown Template: $lang" 1>&2
-	exit 1;
+	exit 1
 fi
 
 
@@ -31,7 +31,7 @@ mv *.txt ./input
 cd src
 
 # Copy language specific templates
-if [[ $lang == "c" || $lang == "C" ]]; then
+if [[ $# -eq 2 && ($lang == "c" || $lang == "C") ]]; then
 	cp ../../templates/main.c ./
 	mv main.c $name.c
 	echo "$name.c created successfully! Enjoy the puzzle :)"
