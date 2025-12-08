@@ -2,8 +2,10 @@
 #include <iostream>
 #include <algorithm>
 #include "day08.hpp"
+#include "Help.hpp"
 
 #define CONNECTS 1000
+#define LOG_LISTS false
 
 int main( int ac, char **av ) {
 
@@ -52,8 +54,9 @@ int main( int ac, char **av ) {
 	std::vector<std::list<Vec> > connections;
 
 	for (size_t i = 0; i < CONNECTS; i++) {
-
-		// Get the vecs of the current pair
+        if (pairs.empty()) {
+            break;
+        }
 		Vec ta = (*pairs.rbegin()).a;
 		Vec tb = (*pairs.rbegin()).b;
 
@@ -61,11 +64,8 @@ int main( int ac, char **av ) {
         List *ta_list = NULL;
         List *tb_list = NULL;
         for (VLIter it = connections.begin(); it != connections.end(); it++) {
-
-            // Look in every list
             List currLst = *it;
             List *addr = &(*it);
-
             for (LIter jt = currLst.begin(); jt != currLst.end(); jt++) {
                 if (*jt == ta) {
                     ta_list = addr;
@@ -76,34 +76,33 @@ int main( int ac, char **av ) {
             }
         }
 
-        // Case: Both in same list [Do nothing]
-        if (ta_list && ta_list == tb_list) {}
-        // Didn't find tb but ta [Add tb to ta_list]
-        else if (ta_list && !tb_list) {
-            (*ta_list).push_back(tb);
-        }
-        // Didn't find ta but tb [Add ta to tb_list]
-        else if (!ta_list && tb_list) {
-            (*tb_list).push_back(ta);
-        }
-        // Found both but in different lists [Merge them into one]
-        else if (ta_list && tb_list) {
-            (*ta_list).merge(*tb_list);
-            // Remove empty tb_list
-            std::vector<std::list<Vec> > tmp;
-            for (VLIter it = connections.begin(); it != connections.end(); it++) {
-                if (!(*it).empty()) {
-                    tmp.push_back(*it);
+        switch (getState(ta_list, tb_list)) {
+            case BOTH_SAME:
+                break;
+            case TB_MISS:
+                (*ta_list).push_back(tb);
+                break;
+            case TA_MISS:
+                (*tb_list).push_back(ta);
+                break;
+            case BOTH_DIFF:
+                (*ta_list).merge(*tb_list);
+                {
+                    std::vector<std::list<Vec> > tmplst;
+                    for (VLIter it = connections.begin(); it != connections.end(); it++) {
+                        if (!(*it).empty()) {
+                            tmplst.push_back(*it);
+                        }
+                    }
+                    connections = tmplst;
                 }
-            }
-            connections = tmp;
-        }
-        // Both not found [Start new list]
-        else {
-            std::list<Vec> tmp;
-            tmp.push_back(ta);
-            tmp.push_back(tb);
-            connections.push_back(tmp);
+                break;
+            case BOTH_MISS:
+                std::list<Vec> tmp;
+                tmp.push_back(ta);
+                tmp.push_back(tb);
+                connections.push_back(tmp);
+                break;
         }
 		pairs.pop_back();
 	}
@@ -112,12 +111,12 @@ int main( int ac, char **av ) {
 	size_t count = 0;
 	long result = 1;
 	for (VLIter it = connections.begin(); it != connections.end(); it++) {
-        /*
-		std::cout << "List Nr: " << count << std::endl;
-		for (LIter jt = (*it).begin(); jt != (*it).end(); jt++) {
-			std::cout << *jt << std::endl;
+        if (LOG_LISTS) {
+            std::cout << "List Nr: " << count << std::endl;
+            for (LIter jt = (*it).begin(); jt != (*it).end(); jt++) {
+                std::cout << *jt << std::endl;
+            }
 		}
-        */
 		if (count < 3) {
 			result *= (*it).size();
 		}

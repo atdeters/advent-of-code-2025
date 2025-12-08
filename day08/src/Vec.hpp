@@ -37,4 +37,6 @@ bool operator==( Vec lhs, Vec rhs );
 bool operator<( std::list<Vec> lhs, std::list<Vec> rhs );
 bool operator>( std::list<Vec> lhs, std::list<Vec> rhs );
 
+std::ostream& operator<<( std::ostream& t_out, const Vec& t_vec );
+
 #endif // ! VEC_HPP

@@ -11,4 +11,12 @@ typedef std::list<Vec> List;
 typedef List::iterator LIter;
 typedef std::vector<List>::iterator VLIter;
 
+enum e_states {
+    TA_MISS,
+    TB_MISS,
+    BOTH_MISS,
+    BOTH_SAME,
+    BOTH_DIFF
+};
+
 #endif // ! DAY08_HPP

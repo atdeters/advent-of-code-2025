@@ -63,3 +63,8 @@ bool operator<( std::list<Vec> lhs, std::list<Vec> rhs ) {
 bool operator>( std::list<Vec> lhs, std::list<Vec> rhs ) {
 	return ( lhs.size() > rhs.size() );
 }
+
+std::ostream& operator<<( std::ostream& t_out, const Vec& t_vec ) {
+	t_out << "x: " << t_vec.x() << "y: " << t_vec.y() << "z: " <<  t_vec.z();
+	return t_out;
+}
