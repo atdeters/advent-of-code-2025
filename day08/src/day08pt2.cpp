@@ -3,8 +3,6 @@
 #include <algorithm>
 #include "day08.hpp"
 
-#define CONNECTS 1000
-
 int main( int ac, char **av ) {
 
 	// File handling etc
@@ -51,9 +49,12 @@ int main( int ac, char **av ) {
 	std::sort(pairs.rbegin(), pairs.rend());
 	std::vector<std::list<Vec> > connections;
 
-	for (size_t i = 0; i < CONNECTS; i++) {
+	while (true) {
 
 		// Get the vecs of the current pair
+        if (pairs.empty()) {
+            break;
+        }
 		Vec ta = (*pairs.rbegin()).a;
 		Vec tb = (*pairs.rbegin()).b;
 
@@ -105,24 +106,13 @@ int main( int ac, char **av ) {
             tmp.push_back(tb);
             connections.push_back(tmp);
         }
-		pairs.pop_back();
+        if (!pairs.empty()) {
+            pairs.pop_back();
+        }
+	    std::sort(connections.rbegin(), connections.rend());
+        if ((*connections.begin()).size() == coor.size()) {
+            std::cout << "The multiplication of the x-coordinates of the last two junction boxes equals \e[1m" << ta.x() * tb.x() << "\e[0m" << std::endl;
+            break;
+        }
 	}
-
-	std::sort(connections.rbegin(), connections.rend());
-	size_t count = 0;
-	long result = 1;
-	for (VLIter it = connections.begin(); it != connections.end(); it++) {
-        /*
-		std::cout << "List Nr: " << count << std::endl;
-		for (LIter jt = (*it).begin(); jt != (*it).end(); jt++) {
-			std::cout << *jt << std::endl;
-		}
-        */
-		if (count < 3) {
-			result *= (*it).size();
-		}
-		count++;
-	}
-
-	std::cout << "The multiplication of the three largest circuit sizes results in \e[1m" << result << "\e[0m" << std::endl;
 }
