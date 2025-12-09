@@ -43,7 +43,6 @@ elif [[ $# -eq 2 && $lang == "rust" ]]; then
     mv $name/* .
     rm -rf $name
     cd src
-    mv main.rs $name.rs
     echo "$name.rs created successfully! Enjoy the puzzle :)"
     exit 0
 fi
